@@ -67,16 +67,22 @@ Typical usage of `R.bat` to launch R gui is the following ^[
 If `R.exe` were on the Windows path and before `R.bat` then it would
 have to be written as follows: `R.bat gui`]:
 
-	R gui
+```cmd
+R gui
+```
 
 This runs `Rgui.exe`. If further arguments are specified they are passed on to
 `Rgui.exe`. For example,
 
-	R gui --help
+```cmd
+R gui --help
+```
 
 will run:
 
-	Rgui.exe --help
+```cmd
+Rgui.exe --help
+```
 
 ### Subcommands
 
@@ -97,9 +103,11 @@ remainder becomes the default subcommand. For example, if `R.bat` were renamed
 Other executable files that come with R (`R.exe`, `Rcmd.exe`, `Rscript.exe`)
 can be run in a similar way:
 
-	R --help
-	R cmd --help
-	R script --help
+```cmd
+R --help
+R cmd --help
+R script --help
+```
 
 (`RSetReg.exe` is another executable that comes with R for Windows. It will be
 discussed later.)
@@ -108,11 +116,13 @@ discussed later.)
 
 There are also some support commands:
 
-	R cd
-	R dir
-	R ls
-	R help
-	R show
+```cmd
+R cd
+R dir
+R ls
+R help
+R show
+```
 
 `R cd` changes directory to the `R_ROOT` directory (typically
 `C:\Program Files\R`).
@@ -125,17 +135,19 @@ Below is a list with typical values. These values are determined by the script
 heuristically (or the user can set any before running `R.bat` or
 `R.bat` itself can be customized by setting any of them near top of the script).
 
-	R_ARCH=x64
-	R_CMD=RShow
-	R_HOME=C:\Program Files\R\R-2.15.3
-	R_MIKTEX_PATH=\Program Files (x86)\MiKTeX 2.9\miktex\bin
-	R_PATH=C:\Program Files\R\R-2.15.3\bin\x64
-	R_REGISTRY=1
-	R_ROOT=C:\Program Files\R
-	R_TOOLS=C:\Rtools
-	R_TOOLS_PATH=C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;
-	R_TOOLS_VERSION=3.0.0.1927
-	R_VER=R-2.15.3
+```cmd
+R_ARCH=x64
+R_CMD=RShow
+R_HOME=C:\Program Files\R\R-2.15.3
+R_MIKTEX_PATH=\Program Files (x86)\MiKTeX 2.9\miktex\bin
+R_PATH=C:\Program Files\R\R-2.15.3\bin\x64
+R_REGISTRY=1
+R_ROOT=C:\Program Files\R
+R_TOOLS=C:\Rtools
+R_TOOLS_PATH=C:\Rtools\bin;C:\Rtools\gcc-4.6.3\bin;
+R_TOOLS_VERSION=3.0.0.1927
+R_VER=R-2.15.3
+```
 
 `R_PATH`, `R_MIKTEX_PATH` and `R_TOOLS_PATH` are the paths to the directories
 holding the `R`, `MiKTeX` and `Rtools` binaries (i.e. `.exe` files).
@@ -156,7 +168,9 @@ values for these variables.
 
 The command
 
-	R path
+```cmd
+R path
+```
 
 adds `R_PATH`, `R_MIKTEX_PATH` and `R_TOOLS` to the Windows path for the
 current `cmd` line session. No other `cmd` line sessions are affected and
@@ -171,7 +185,9 @@ since `R.bat` will not have to run each time that `R` is started. ^[On a
 Note that if both `R.bat` and `R.exe` exist on the Windows path then the first
 on the path will be called if one uses:
 
-	R ...arguments...
+```cmd
+R ...arguments...
+```
 
 thus one may wish to enter `R.bat` or `R.exe` rather than just `R` for clarity.
 
@@ -183,7 +199,9 @@ described later.)
 
 The command
 
-	R tools
+```cmd
+R tools
+```
 
 is similar to `R path` except only `R_TOOLS_PATH` and `R_MIKTEX_PATH` are
 added to the path (but not `R_PATH`). This might be useful if you need to use
@@ -199,13 +217,17 @@ installation in `R_ROOT` which has the most recent date will be used.
 
 If we enter this at the `cmd` line:
 
-	set R_VER=R-2.14.0
+```cmd
+set R_VER=R-2.14.0
+```
 
 then for the remainder of this `cmd` line session that version will be used.
 If one wishes to use two different R versions at once we could spawn a new `cmd`
 line session:
 
-	start
+```cmd
+start
+```
 
 and then enter the same set command into the new window. Now any use of R in
 the original window will use the default version whereas in the new `cmd` line
@@ -214,7 +236,9 @@ window it will use the specified version.
 One can change the registry entry permanently to refer to a particlar version
 like this:
 
-	cmd /c set R_VER=R-2.14.0 ^& R SetReg
+```cmd
+cmd /c set R_VER=R-2.14.0 ^& R SetReg
+```
 
 This requires Administrator privileges. If not already running as
 Administrator a window will pop up requesting permission to proceed.
@@ -225,8 +249,10 @@ determined by which R install directory is the most recent. To make a
 particular R install directory the most recent run the following in a `cmd`
 line session with Administrator privileges:
 
-	R dir
-	el cmd /c set R_VER=R-2.14.0 ^& R touch
+```cmd
+R dir
+el cmd /c set R_VER=R-2.14.0 ^& R touch
+```
 
 The value of `R_VER` in the above line must be one of the directories listed
 by `R dir`. The `el.js` command used in the above code comes with these batch
@@ -272,9 +298,11 @@ This is not a separate batch file but is yet another way to call `R.bat`.
 Its purpose is to turn an R script into a Windows batch file.
 
 1.  Copy `R.bat` to a file with the name `#Rscript.bat` like this
-(from the Windows cmd line):
+    (from the Windows cmd line):
 
-	copy R.bat #Rscript.bat
+    ```cmd
+    copy R.bat #Rscript.bat
+    ```
 
 2.  Ensure that `#Rscript.bat` is on your windows path. Then we can turn an
     R script into a `.bat` file by
@@ -290,12 +318,16 @@ be ignored since it would be regarded as a comment by R.)
 
 For example, if we have a file `test.bat` with the following two lines:
 
-	#Rscript %0 %*
-	print(pi)
+```cmd
+#Rscript %0 %*
+print(pi)
+```
 
 then we can invoke it from the Windows cmd line like this:
 
-	test
+```cmd
+test
+```
 
 ## #Rscript2.bat
 
@@ -317,7 +349,9 @@ There is more information on this in the comments at the top of the script.
 
 The command
 
-	Rpathset
+```cmd
+Rpathset
+```
 
 adds `R_PATH`, `R_MIKTEX_PATH` and `R_TOOLS` to the Windows path for the
 current `cmd` line session. No other `cmd` line sessions are affected and
@@ -327,7 +361,9 @@ the R binaries will be on the path so they can be accessed directly without
 
 `Rpathset` is an alternative to
 
-	R path
+```cmd
+R path
+```
 
 but unlike `R.bat`, `Rpathset.bat` does not have any automatic heuristics.
 Instead, it requires that the user manually set the relevant variables in its
@@ -341,8 +377,10 @@ work on untested Windows configurations.
 
 `Rpathset.bat` might be used like this:
 
-	Rpathset
-	Rgui
+```cmd
+Rpathset
+Rgui
+```
 
 where `Rgui` is now directly accessing `Rgui.exe` as `Rpathset.bat` has added
 `R_PATH` to the Windows path.
@@ -357,11 +395,13 @@ another. If used to transfer packages from one version of R to another it is
 recommended that the user run `upgrade.packages()` in the target. For example,
 assuming the default location for the user libraries:
 
-	cd %userprofile%\Documents\win-library
-	copydir 2.15\library 3.0\library
+```cmd
+cd %userprofile%\Documents\win-library
+copydir 2.15\library 3.0\library
 
-	R.bat gui
-	... now enter update.packages(checkBuilt=TRUE) into R...
+R.bat gui
+... now enter update.packages(checkBuilt=TRUE) into R...
+```
 
 (The `checkBuilt=TRUE` argument forces a rebuild and is normally not required
 when upgrading to another version that differs only in the minor version
@@ -376,7 +416,9 @@ overwrite such packages delete them from the target first using the Windows
 
 `el.js` runs its arguments elevated (i.e. with Adminstrator privileges). For example,
 
-	el R touch
+```cmd
+el R touch
+```
 
 The user will be prompted to allow elevation to proceed.
 
@@ -399,5 +441,6 @@ This batch file creates a pdf of this documentation from the markdown file
 found [here](https://code.google.com/p/pandoc/downloads/list). It is run
 without arguments:
 
-	make-batchfiles-pdf
-
+```cmd
+make-batchfiles-pdf
+```
