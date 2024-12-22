@@ -1,10 +1,10 @@
-# Windows Batch Files for R #
+# Windows Batch Files for R
 
 G. Grothendieck
 
 Software and documentation is (c) 2013 GKX Associates Inc. and licensed under [GPL 2.0](http://www.gnu.org/licenses/gpl-2.0.html).
 
-## Introduction ##
+## Introduction
 
 This document describes a number of Windows batch, javascript and `.hta` files
 that may be used in conjunction with R.  Each is self contained and independent
@@ -39,9 +39,9 @@ used with `vim` or other text editor.
 
 `find-miktex.hta` displays a popup window showing where it found MiKTeX.
 
-## R.bat ##
+## R.bat
 
-### Purpose ###
+### Purpose
 
 The purpose of `R.bat` is to facilitiate the use of R from the Windows `cmd`
 line by eliminating the need to make any system changes.  There is no need to
@@ -61,7 +61,7 @@ Like all the other utilities here, `R.bat` is a self contained no-install script
 with no dependencies so just place it anywhere on your Windows path or in the
 current directory.
 
-### Typical Usage ###
+### Typical Usage
 
 Typical usage of `R.bat` to launch R gui is the following ^[
 If `R.exe` were on the Windows path and before `R.bat` then it would
@@ -79,7 +79,7 @@ will run:
 
 	Rgui.exe --help
 
-### Subcommands ###
+### Subcommands
 
 If the first argument is optionally one of `cd`, `cmd`, `dir`, `gui`, `help`,
 `path`, `R`, `script`, `show`, `SetReg`, `tools`, `touch` or the same except
@@ -93,7 +93,7 @@ script has been renamed then any leading `R` is removed from the name and the
 remainder becomes the default subcommand.  For example, if `R.bat` were renamed
 `Rgui.bat` then issuing `Rgui` would be the same as running `R gui` .
 
-### Other R Executables ###
+### Other R Executables
 
 Other executable files that come with R (`R.exe`, `Rcmd.exe`, `Rscript.exe`)
 can be run in a similar way:
@@ -105,7 +105,7 @@ can be run in a similar way:
 (`RSetReg.exe` is another executable that comes with R for Windows. It will be
 discussed later.)
 
-### Support Subcommands ###
+### Support Subcommands
 
 There are also some support commands:
 
@@ -153,7 +153,7 @@ respectively.  It can also be specified as `32` or `64` in which case it will
 be translated automatically.  See the `R show` output above for examples of
 values for these variables.
 
-### Path Setting Subcommands ###
+### Path Setting Subcommands
 
 The command
 
@@ -190,8 +190,7 @@ is similar to `R path` except only `R_TOOLS_PATH` and `R_MIKTEX_PATH` are
 added to the path (but not `R_PATH`).  This might be useful if you need to use
 those utilities without R.
 
-
-### Selecting R Version ###
+### Selecting R Version
 
 For R installations using the standard locations and not specifying any of the
 R_ environment variables the registry will determine which version of R is used
@@ -240,7 +239,7 @@ Note that `R SetReg` and `R touch` make permanent changes to the system
 particular R directory, respectively) but the other subcommands make no
 permanent changes.
 
-### Heuristic to Locate R ###
+### Heuristic to Locate R
 
 1. If `.\Rgui.exe` exists use implied `R_PATH` and skip remaining points.
 
@@ -268,7 +267,7 @@ and `R_VER` that are not already defined.
 
 10. If `Rgui.exe` found on `PATH` use implied `R_PATH`.
 
-## #Rscript.bat ##
+## #Rscript.bat
 
 This is not a separate batch file but is yet another way to call `R.bat`.
 Its purpose is to turn an R script into a Windows batch file.
@@ -299,7 +298,7 @@ then we can invoke it from the Windows cmd line like this:
 
 	test
 
-## #Rscript2.bat ##
+## #Rscript2.bat
 
 This batch file is used in exactly the same manner as #Rscript.bat .  The only
 difference is that unlike #Rscript.bat which automatically finds R with this
@@ -315,7 +314,7 @@ R_ARCH on the appropriate line.
 
 There is more information on this in the comments at the top of the script.
 
-## Rpathset.bat ##
+## Rpathset.bat
 
 The command
 
@@ -352,7 +351,7 @@ where `Rgui` is now directly accessing `Rgui.exe` as `Rpathset.bat` has added
 The set statements are documented in the source of the `Rpathset.bat` file
 itself.
 
-## movedir.bat and copydir.bat ##
+## movedir.bat and copydir.bat
 
 `movedir.bat` and `copydir.bat` move or copy the packages from one library to
 another.  If used to transfer packages from one version of R to another it is
@@ -374,8 +373,7 @@ target library so they are particularly safe to use.  (If you do wish to
 overwrite such packages delete them from the target first using the Windows
 `del` command.)
 
-
-## el.js ##
+## el.js
 
 `el.js` runs its arguments elevated (i.e. with Adminstrator privileges).  For example,
 
@@ -383,19 +381,19 @@ overwrite such packages delete them from the target first using the Windows
 
 The user will be prompted to allow elevation to proceed.
 
-## clip2r.js ##
+## clip2r.js
 
 This program writes the clipboard into the running R session.  It can be used
 with `vim` or other editor.  See the source for additional instructions.
 
-## find-mixtex.hta ##
+## find-mixtex.hta
 
 This program displays a window showing where MiKTeX was found. It uses the
 MiKTeX API. This API is not used by `R.bat` .  Instead `R.bat` just looks in
 common places.  (Using this API may be incorporated into the `R.bat` heuristic
 in the future.)
 
-## make-batchfiles-pdf.bat ##
+## make-batchfiles-pdf.bat
 
 This batch file creates a pdf of this documentation from the markdown file
 `batchfiles.md` .  `pandoc` must be installed for this to run.  `pandoc` can be
