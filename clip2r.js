@@ -10,4 +10,3 @@
 var wsh = new ActiveXObject("Wscript.Shell");
 wsh.AppActivate("Rgui");
 wsh.SendKeys("% x%{w}1^{v}");
-
