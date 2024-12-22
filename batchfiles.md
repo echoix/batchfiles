@@ -210,7 +210,7 @@ those utilities without R.
 ### Selecting R Version
 
 For R installations using the standard locations and not specifying any of the
-R_ environment variables the registry will determine which version of R is used
+`R_` environment variables the registry will determine which version of R is used
 (assuming `R_REGISTRY` is not `0`). If R is not found in the registry or if
 `R_REGISTRY` is `0` then the R
 installation in `R_ROOT` which has the most recent date will be used.
