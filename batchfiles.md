@@ -269,24 +269,24 @@ permanent changes.
 1. If `.\Rgui.exe` exists use implied `R_PATH` and skip remaining points.
 
 2. If `.\{x64,i386}\Rgui.exe` or `.\bin\{x64,i386}\Rgui.exe` exists use implied
-`R_HOME`.
+   `R_HOME`.
 
 3. If `R_HOME` defined then derive any of `R_ROOT` and `R_VER` that are not
-already defined.
+   already defined.
 
 4. If `R_PATH` defined then derive any of `R_ROOT`, `R_HOME`, `R_VER` and
-`R_ARCH` that are not already defined.
+   `R_ARCH` that are not already defined.
 
 5. If `R_REGISTRY=1` and R found in registry derive any of `R_HOME`, `R_ROOT`
-and `R_VER` that are not already defined.
+   and `R_VER` that are not already defined.
 
 6. If R_ROOT not defined try `%ProgramFiles%\R\*`, `%ProgramFiles(x86)%\R\*`
-    and then `%SystemRoot%\R` else error.
+   and then `%SystemRoot%\R` else error.
 
 7. If `R_VER` not defined use last directory in `cd %R_ROOT% & dir /od`.
 
 8. if `R_ARCH` not defined try `%R_ROOT%\%R_VER%\bin\x64\Rgui.exe` and then
-    `%R_ROOT%\%R_VER%\bin\i386\Rgui.exe`
+   `%R_ROOT%\%R_VER%\bin\i386\Rgui.exe`
 
 9. If `R_ROOT`, `R_VER` and `R_ARCH` defined skip remaining points.
 
